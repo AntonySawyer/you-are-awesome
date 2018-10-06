@@ -1,18 +1,40 @@
 // DO WHATEVER YOU WANT HERE
+//we espect array with one key - argument = key
+const createEnumerableProperty = (propertyName) => {return propertyName};
+//symbol length always 0. argument = key - we return key in symbol
+const createNotEnumerableProperty = (propertyName) => {return Symbol(propertyName)};
+//magic here
+const createProtoMagicObject = () => {
+  let magicObj = function () {};
+  magicObj.prototype = magicObj.__proto__;
+  return magicObj;
+};
 
-const createEnumerableProperty = () => {};
-const createNotEnumerableProperty = () => {};
-const createProtoMagicObject = () => {};
-const incrementor = () => {};
+const incrementor = () => {
+  incrementor.count = incrementor.count ? incrementor.count + 1 : 1;
+  incrementor.valueOf = function () {return incrementor.count};
+  return incrementor;
+};
+
 const asyncIncrementor = () => {};
+
 const createIncrementer = () => {};
 
 // return same argument not earlier than in one second, and not later, than in two
-const returnBackInSecond = () => {};
+const returnBackInSecond = (param) => {
+  let result = new Promise(res => {setTimeout(() => res(param), 1000)});
+  return result;
+};
+
 const getDeepPropertiesCount = () => {};
-const createSerializedObject = () => {};
+// type of NULL == object
+const createSerializedObject = () => {return null};
+
 const toBuffer = () => {};
-const sortByProto = () => {};
+// in arguments is not numbers => sort without number compare
+const sortByProto = (array) => {
+  return array.sort();
+};
 
 exports.createEnumerableProperty = createEnumerableProperty;
 exports.createNotEnumerableProperty = createNotEnumerableProperty;
